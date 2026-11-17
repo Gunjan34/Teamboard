@@ -8,8 +8,8 @@ export function authenticate(req: Request, _res: Response, next: NextFunction) {
     throw new AppError(401, 'Not authenticated')
   }
   try {
-    const { sub, role } = verifyAccessToken(token)
-    req.user = { id: sub, role }
+    const { sub } = verifyAccessToken(token)
+    req.user = { id: sub }
   } catch {
     throw new AppError(401, 'Invalid or expired token')
   }
